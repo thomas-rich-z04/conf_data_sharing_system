@@ -10,6 +10,7 @@ const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes");
 const blogRoutes = require("./routes/blog");
 const userRouters = require("./routes/userRoutes");
+const confidentialRoutes = require("./routes/confidentialRoutes");
 
 //app
 const app = express();
@@ -39,6 +40,7 @@ if (process.env.NODE_ENV == "development") {
 app.use("/api", blogRoutes);
 app.use("/api", authRoutes);
 app.use("/api", userRouters);
+app.use("/api/confidential", confidentialRoutes);
 
 //port
 const port = process.env.PORT || 8000;

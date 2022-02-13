@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Receiver = require("../models/receiver");
 const shortId = require("shortid");
 const jwt = require("jsonwebtoken");
 const expressJwt = require("express-jwt");
@@ -12,22 +13,40 @@ exports.signup = (req, res) => {
       });
     }
 
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
 
-    let newUser = new User({ name, email, password });
-    newUser.save((err, success) => {
-      if (err) {
-        return res.status(400).json({
-          error: err,
-        });
+    let newUser = new User({ name, email, password, role });
+    newUser.save()
+    .then((savedUser) => {
+      if(savedUser.role == "3") {
+        let savedUserId = savedUser._id;
+        let newReceiver = new Receiver({ user_id: savedUserId, amount: 0 });
+        return newReceiver.save();
       }
-      // res.json({
-      //   user: success,
-      // });
+    })
+    .then(() => {
       res.json({
         message: "signup success! please login.",
       });
-    });
+    })
+    .catch((err) => {
+      res.json({
+        message: err,
+      });
+    })
+    // newUser.save((err, success) => {
+    //   if (err) {
+    //     return res.status(400).json({
+    //       error: err,
+    //     });
+    //   }
+    //   // res.json({
+    //   //   user: success,
+    //   // });
+    //   res.json({
+    //     message: "signup success! please login.",
+    //   });
+    // });
   });
 };
 
