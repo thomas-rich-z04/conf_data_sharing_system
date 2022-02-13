@@ -1,25 +1,18 @@
 const express = require("express");
 const route = express.Router();
 const {
+  authMiddleware,
+} = require("../controllers/authControllers");
+
+const {
   receivers,
+  uploadCard,
+  cards
 } = require("../controllers/confidentialController");
 
-//import validator
-// const { runValidation } = require("../validators");
-// const {
-//   userSignupValidator,
-//   userSigninValidator,
-// } = require("../validators/authValidator");
-
 //pass on controllers
-// route.post("/signin", userSigninValidator, runValidation, signin);
 route.get("/receivers", receivers);
-
-// test
-// route.get("/secret", requireSignin, (req, res) => {
-//   res.json({
-//     user: req.user,
-//   });
-// });
+route.post("/uploadCard", uploadCard);
+route.post("/cards", cards);
 
 module.exports = route;

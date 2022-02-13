@@ -11,10 +11,10 @@ import {
 const Receiver = (props) => {
   return (
     <React.Fragment>
-      <Card onClick={ ()=>{props.setReceiverId(props.receiver.id)} }>
+      <Card onClick={ ()=>{props.receiverClick(props.receiver._id)} }>
         <CardBody>
           <CardTitle tag="h5">
-            {props.receiver.name}
+            {props.receiver.user[0].name}
           </CardTitle>
           <CardText>
             Cards needed: ${props.receiver.amount}

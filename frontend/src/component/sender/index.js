@@ -9,61 +9,65 @@ import SentCardList from './sentCardList'
 
 import {
     getReceivers,
+    getCards,
 } from '../../action/senderAction'
 
 const Sender = () => {
 
   const [receiverId, setReceiverId] = useState('')
 
-  const [receivers, setReceivers] = useState([
-    {
-      id: "11111111",
-      name: "Account A",
-      amount: 5000
-    },
-    {
-      id: "22222222",
-      name: "Account B",
-      amount: 2000
-    }
-  ]);
+  const [receivers, setReceivers] = useState([]);
 
-  const [sentCards, setSentCards] = useState([
-    {
-      number: "91020103010301",
-      status: "Good balance"
-    },
-    {
-      number: "93333103010301",
-      status: "Done"
-    }
-  ]);
+  const [sentCards, setSentCards] = useState([]);
 
   useEffect(() => {
-    // try {
-    //   getReceivers().then((data) => {
-    //     console.log("----data----");
-    //     console.log(data);
-    //     try {
-    //       if (data.error) {
-    //         // console.log("server error");
-    //       } else {
-    //         // setReceivers();
-    //       }
-    //     } catch (err) {
-    //       console.log(err);
-    //     }
-    //   });
-    // } catch (error) {
-    //   console.log("error something");
-    // }
+    try {
+      getReceivers().then((data) => {
+        try {
+          if (data.error) {
+            console.log("server error");
+          } else {
+            setReceivers(data.receivers);
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    } catch (error) {
+      console.log("error something");
+    }
   }, []);
+
+  const receiverClick = (receiver_id) => {
+    setReceiverId(receiver_id);
+    
+    let payload = {};
+    let user = JSON.parse(localStorage.getItem("user"));
+    payload.sender_id = user._id;
+    payload.receiver_id = receiver_id;
+
+    try {
+      getCards(payload).then((data) => {
+        try {
+          if (data.error) {
+            console.log("server error");
+          } else {
+            setSentCards(data.cards);
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    } catch (error) {
+      console.log("error something");
+    }
+  }
   
   return (
     <React.Fragment>
       <Container>
         <h1>Sender's page</h1> <br />
-        <ReceiverList receivers={receivers} setReceiverId={setReceiverId}/> <br />
+        <ReceiverList receivers={receivers} receiverClick={receiverClick}/> <br />
         <CardForm receiverId={receiverId}/> <br />
         <SentCardList sentCards={sentCards}/> <br />
       </Container>

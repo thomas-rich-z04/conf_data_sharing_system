@@ -14,7 +14,7 @@ const ReceiverList = (props) => {
           <Col sm="6">
             <h4>Accounts:</h4>
             {props.receivers && props.receivers.map((receiver, index) => (
-              <Receiver key={index} receiver={receiver} setReceiverId={props.setReceiverId}/>
+              <Receiver key={index} receiver={receiver} receiverClick={props.receiverClick}/>
             ))}
           </Col>
         </Row>

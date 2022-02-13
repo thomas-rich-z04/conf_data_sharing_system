@@ -8,6 +8,10 @@ import {
     Button
 } from "reactstrap";
 
+import {
+    uploadCard,
+} from "../../action/senderAction"
+
 const CardForm = (props) => {
     
   const [values, setValues] = useState({
@@ -24,8 +28,24 @@ const CardForm = (props) => {
 
   const onSendClick = () => {
     let payload = values;
-    payload.receiverId = props.receiverId;
-    console.log(payload);
+    let user = JSON.parse(localStorage.getItem("user"));
+    payload.sender_id = user._id;
+    payload.receiver_id = props.receiverId;
+    try {
+        uploadCard(payload).then((data) => {
+        //   try {
+        //     if (data.error) {
+        //       console.log("server error");
+        //     } else {
+        //       setReceivers(data.receivers);
+        //     }
+        //   } catch (err) {
+        //     console.log(err);
+        //   }
+        });
+      } catch (error) {
+        console.log("error something");
+      }
   }
 
   return (
