@@ -2,12 +2,24 @@ import React from 'react';
 
 import CardAmount from './cardAmount';
 
+import {
+    Row,
+    Col
+} from "reactstrap";
+
 const ReceivedCardList = (props) => {
     return (
         <React.Fragment>
-            <h4>Received cards</h4>
+            <Row>
+                <Col sm="6">
+                    Card
+                </Col>
+                <Col sm="6">
+                    Amount
+                </Col>
+            </Row>
             {props.receivedCards && props.receivedCards.map((card, index) => (
-                <CardAmount key={index} card={card}/>
+                <CardAmount key={index} card={card} cardAmountClick={props.cardAmountClick}/>
             ))}
         </React.Fragment>
     );

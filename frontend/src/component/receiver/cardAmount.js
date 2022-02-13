@@ -8,7 +8,7 @@ import {
 const CardAmount = (props) => {
     return (
         <React.Fragment>
-            <Row>
+            <Row onClick={ ()=>{props.cardAmountClick(props.card._id)} }>
                 <Col sm="6">
                     {props.card.number}
                 </Col>

@@ -11,7 +11,7 @@ import {
 const Receiver = (props) => {
   return (
     <React.Fragment>
-      <Card onClick={ ()=>{props.receiverClick(props.receiver._id)} }>
+      <Card onClick={ ()=>{props.receiverClick(props.receiver.user_id)} }>
         <CardBody>
           <CardTitle tag="h5">
             {props.receiver.user[0].name}

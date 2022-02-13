@@ -15,9 +15,7 @@ import {
 const Sender = () => {
 
   const [receiverId, setReceiverId] = useState('')
-
   const [receivers, setReceivers] = useState([]);
-
   const [sentCards, setSentCards] = useState([]);
 
   useEffect(() => {

@@ -33,15 +33,15 @@ const CardForm = (props) => {
     payload.receiver_id = props.receiverId;
     try {
         uploadCard(payload).then((data) => {
-        //   try {
-        //     if (data.error) {
-        //       console.log("server error");
-        //     } else {
-        //       setReceivers(data.receivers);
-        //     }
-        //   } catch (err) {
-        //     console.log(err);
-        //   }
+          try {
+            if (data.error) {
+              console.log("server error");
+            } else {
+              console.log(data.savedCard);
+            }
+          } catch (err) {
+            console.log(err);
+          }
         });
       } catch (error) {
         console.log("error something");
