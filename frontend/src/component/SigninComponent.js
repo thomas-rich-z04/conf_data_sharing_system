@@ -4,8 +4,8 @@ import { withRouter } from "react-router-dom";
 
 const SigninComponent = ({ history }) => {
   const [values, setValues] = useState({
-    email: "alamin@gmail.com",
-    password: "123456",
+    email: "",
+    password: "",
     error: "",
     loading: false,
     message: "",
@@ -79,6 +79,7 @@ const SigninComponent = ({ history }) => {
               className="form-control"
               placeholder="Type your password"
             />
+            <br />
           </div>
           <button className="btn btn-primary">SignIn</button>
         </form>

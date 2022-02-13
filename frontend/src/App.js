@@ -7,6 +7,9 @@ import HomeAdmin from "./component/admin/index";
 import HomeUser from "./component/user/index";
 import Protected from "./component/private/Protected";
 
+import Sender from "./component/sender/index";
+import Receiver from "./component/receiver/index";
+
 function App() {
   return (
     <div className="App">
@@ -18,6 +21,8 @@ function App() {
           <Route path="/signin" component={Signin} exact />
           <Route path="/admin" component={HomeAdmin} exact />
           <Route path="/user" component={HomeUser} exact />
+          <Route path="/sender" component={Sender} exact />
+          <Route path="/receiver" component={Receiver} exact />
         </Switch>
       </Router>
     </div>

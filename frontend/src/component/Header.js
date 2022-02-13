@@ -19,14 +19,14 @@ const Header = ({ history }) => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <Link to="/">
+        {/* <Link to="/">
           <NavbarBrand
             style={{ cursor: "pointer" }}
             className="font-weight-bold"
           >
             LOGO HERE
           </NavbarBrand>
-        </Link>
+        </Link> */}
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
@@ -50,7 +50,7 @@ const Header = ({ history }) => {
                 <Link to="/user">
                   <NavLink style={{ cursor: "pointer" }}>{`${
                     isAuth().name
-                  }'s Dashboard`}</NavLink>
+                  }'s User Dashboard`}</NavLink>
                 </Link>
               </NavItem>
             )}
@@ -60,7 +60,27 @@ const Header = ({ history }) => {
                 <Link to="/admin">
                   <NavLink style={{ cursor: "pointer" }}>{`${
                     isAuth().name
-                  }'s Dashboard`}</NavLink>
+                  }'s Admin Dashboard`}</NavLink>
+                </Link>
+              </NavItem>
+            )}
+
+            {isAuth() && isAuth().role === 2 && (
+              <NavItem>
+                <Link to="/sender">
+                  <NavLink style={{ cursor: "pointer" }}>{`${
+                    isAuth().name
+                  }'s Sender Dashboard`}</NavLink>
+                </Link>
+              </NavItem>
+            )}
+
+            {isAuth() && isAuth().role === 3 && (
+              <NavItem>
+                <Link to="/receiver">
+                  <NavLink style={{ cursor: "pointer" }}>{`${
+                    isAuth().name
+                  }'s Receiver Dashboard`}</NavLink>
                 </Link>
               </NavItem>
             )}

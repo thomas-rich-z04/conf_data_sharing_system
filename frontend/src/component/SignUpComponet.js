@@ -7,23 +7,24 @@ const SignUpComponet = ({ history }) => {
     name: "",
     email: "",
     password: "",
+    role: 2,
     error: "",
     loading: false,
     message: "",
     showForm: true,
   });
 
-  const { name, email, password, error, loading, message, showForm } = values;
+  const { name, email, password, role, error, loading, message, showForm } = values;
   useEffect(() => {
     isAuth() && history.push("/");
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.table({ name, email, password, error, loading, message, showForm });
+    console.table({ name, email, password, role, error, loading, message, showForm });
 
     setValues({ ...values, loading: true, error: false });
-    const user = { name, email, password };
+    const user = { name, email, password, role };
 
     try {
       signup(user).then((data) => {
@@ -37,6 +38,7 @@ const SignUpComponet = ({ history }) => {
               name: "",
               email: "",
               password: "",
+              role: 2,
               error: "",
               loading: false,
               message: data.message,
@@ -93,7 +95,17 @@ const SignUpComponet = ({ history }) => {
               className="form-control"
               placeholder="Type your password"
             />
+            <br />
+
+            <select
+              onChange={handleChange("role")}>
+              <option value={2}>Sender</option>
+              <option value={3}>Receiver</option>
+            </select>
+
+            <br />
           </div>
+          <br />
           <button type="submit" className="btn btn-primary">
             SignUp
           </button>
