@@ -25,6 +25,37 @@ exports.receivers = (req, res) => {
   })
 };
 
+exports.receiversWithCards = (req, res) => {
+  Receiver.aggregate([
+    {
+      $lookup:
+      {
+          from: 'users',
+          localField: 'user_id',
+          foreignField: '_id',
+          as: 'user'
+      },
+    },
+    {
+      $lookup:
+      {
+          from: 'cards',
+          localField: 'user_id',
+          foreignField: 'receiver_id',
+          as: 'cards'
+      },
+    }
+  ])
+  .then(receivers => {
+    res.json({
+      receivers
+    });
+  })
+  .catch(err => {
+    console.log(err);
+  })
+};
+
 exports.uploadCard = (req, res) => {
   const newCard = new Card(req.body);
   newCard.save()

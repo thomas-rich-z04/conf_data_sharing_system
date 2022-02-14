@@ -145,7 +145,9 @@ const Receiver = () => {
         <h1>Received cards</h1> <br />
         <Row>
           <Col sm="8">
-            <ReceivedCardList receivedCards={receivedCards} cardAmountClick={cardAmountClick}/>
+            {receivedCards && (
+              <ReceivedCardList receivedCards={receivedCards} cardAmountClick={cardAmountClick}/>
+            )}
           </Col>
           <Col sm="4">
             {cardId != "" && (

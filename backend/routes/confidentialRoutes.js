@@ -11,7 +11,8 @@ const {
   card,
   receiver,
   updateAmount,
-  updateCardStatus
+  updateCardStatus,
+  receiversWithCards
 } = require("../controllers/confidentialController");
 
 //pass on controllers
@@ -22,5 +23,6 @@ route.post("/card", card);
 route.post("/receiver", receiver);
 route.post("/updateAmount", updateAmount);
 route.post("/updateCardStatus", updateCardStatus);
+route.get("/receiversWithCards", receiversWithCards);
 
 module.exports = route;
