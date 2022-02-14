@@ -36,6 +36,10 @@ const SigninComponent = ({ history }) => {
           autheticate(data, () => {
             if (isAuth() && isAuth().role === 1) {
               history.push("/admin");
+            } else if (isAuth() && isAuth().role === 2) {
+              history.push("/sender");
+            } else if (isAuth() && isAuth().role === 3) {
+              history.push("/receiver");
             } else {
               history.push("/user");
             }
