@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import ReceiverWithCardList from "./receiverWithCardList";
+import AddUser from "./AddUser";
 
 import {
   Container,
@@ -45,6 +46,7 @@ const Admin = () => {
         </Row>
         <br />
         <Row>
+          <AddUser />
         </Row>
       </Container>
     </React.Fragment>

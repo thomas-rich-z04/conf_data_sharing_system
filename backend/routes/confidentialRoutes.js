@@ -4,6 +4,12 @@ const {
   authMiddleware,
 } = require("../controllers/authControllers");
 
+//import validator
+const { runValidation } = require("../validators");
+const {
+  cardValidator,
+} = require("../validators/cardValidator");
+
 const {
   receivers,
   uploadCard,
@@ -17,7 +23,7 @@ const {
 
 //pass on controllers
 route.get("/receivers", receivers);
-route.post("/uploadCard", uploadCard);
+route.post("/uploadCard", cardValidator, runValidation, uploadCard);
 route.post("/cards", cards);
 route.post("/card", card);
 route.post("/receiver", receiver);
